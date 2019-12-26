@@ -1,0 +1,17 @@
+server:
+  port: 8080
+spring:
+  profiles:
+    active: dev
+#  main:
+#    allow-bean-definition-overriding: true
+
+
+logging:
+  level:
+    org.springframework.security: debug
+    com.sweetmart.modules: debug
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/**/*Mapper.xml
+  type-aliases-package: com.sweetmart.modules.*.entity

@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration  scan="true" scanPeriod="60 seconds" debug="false">
+
+    <property name="appName" value="lh-coupon-api" />
+    <property name="log.path" value="/tmp/${appName}/logs" />
+    <property name="log.pattern" value="%d{yyyy-MM-dd HH:mm:ss.SSS} [%thread] %-5level %logger{36} - [%method,%line] - %msg%n" />
+
+    <contextName>${appName}</contextName>
+
+    <!-- 控制台输出 -->
+    <appender name="console" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+    </appender>
+
+    <!-- 系统debug日志 -->
+    <appender name="file_debug" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${appName}-debug.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>${log.path}/${appName}-debug.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 日志最大的历史 180天 -->
+            <maxHistory>180</maxHistory>
+            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，命名日志文件，例如log-error-2019-06-21.0.log -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>500KB</MaxFileSize>
+        </triggeringPolicy>-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>DEBUG</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>NEUTRAL</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 系统info日志 -->
+    <appender name="file_info" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${appName}-info.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!-- 按天回滚 daily -->
+            <fileNamePattern>${log.path}/${appName}-info.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 日志最大的历史 180天 -->
+            <maxHistory>180</maxHistory>
+            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，命名日志文件，例如log-error-2019-06-21.0.log -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>500MB</MaxFileSize>
+        </triggeringPolicy>-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>INFO</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 系统warn日志 -->
+    <appender name="file_warn" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${appName}-warn.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${appName}-warn.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 日志最大的历史 180天 -->
+            <maxHistory>180</maxHistory>
+            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，命名日志文件，例如log-error-2019-06-21.0.log -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>500MB</MaxFileSize>
+        </triggeringPolicy>-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>WARN</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 系统error日志 -->
+    <appender name="file_error" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <file>${log.path}/${appName}-error.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${log.path}/${appName}-error.%d{yyyy-MM-dd}.%i.log</fileNamePattern>
+            <!-- 日志最大的历史 180天 -->
+            <maxHistory>180</maxHistory>
+            <!-- 除按日志记录之外，还配置了日志文件不能超过2M，若超过2M，日志文件会以索引0开始，命名日志文件，例如log-error-2019-06-21.0.log -->
+            <timeBasedFileNamingAndTriggeringPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedFNATP">
+                <maxFileSize>500MB</maxFileSize>
+            </timeBasedFileNamingAndTriggeringPolicy>
+        </rollingPolicy>
+        <encoder>
+            <pattern>${log.pattern}</pattern>
+        </encoder>
+        <!--日志文件最大的大小-->
+        <!--<triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+            <MaxFileSize>500MB</MaxFileSize>
+        </triggeringPolicy>-->
+        <filter class="ch.qos.logback.classic.filter.LevelFilter">
+            <level>ERROR</level>
+            <onMatch>ACCEPT</onMatch>
+            <onMismatch>DENY</onMismatch>
+        </filter>
+    </appender>
+
+    <!-- 显示形成的sql、使用的参数、结果集 -->
+    <!--myibatis log configure-->
+    <logger name="com.apache.ibatis" level="DEBUG"/>
+    <logger name="java.sql.Connection" level="DEBUG"/>
+    <logger name="java.sql.Statement" level="DEBUG"/>
+    <logger name="java.sql.PreparedStatement" level="DEBUG"/>
+    <logger name="org.springframework" level="INFO" />
+
+    <logger name="com.sweetmart" level="DEBUG" />
+
+    <root level="debug">
+        <appender-ref ref="console" />
+    </root>
+
+    <!--系统操作日志-->
+    <root level="info">
+        <appender-ref ref="file_debug" />
+        <appender-ref ref="file_info" />
+        <appender-ref ref="file_warn" />
+        <appender-ref ref="file_error" />
+    </root>
+</configuration>
